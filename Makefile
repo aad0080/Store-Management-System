@@ -1,31 +1,30 @@
-CC = g++
+//compile with ./a.out
+
+CC = g++ -std=c++14
 
 all: main.o address.o credit_card.o person.o product.o store.o transaction.o
-	$(CC) main.o address.o credit_card.o person.o product.o store.o transaction.o -o all
+	$(CC) main.o address.o credit_card.o person.o product.o store.o transaction.o
 
-main.o: main.cpp
-	$(CC) -c main.cpp -o main
+main.o: main.cpp address.h credit_card.h person.h product.h store.h transaction.h
+	$(CC) -c main.cpp
 
-address.o: address.cpp
-	$(CC) -c address.cpp -o address
+address.o: address.cpp address.h
+	$(CC) -c address.cpp
 
-credit_card.o: credit_card.cpp
-	$(CC) -c credit_card.cpp -o credit
+credit_card.o: credit_card.cpp credit_card.h
+	$(CC) -c credit_card.cpp
 
-person.o: person.cpp
-	$(CC) -c person.cpp -o person
+person.o: person.cpp person.h address.h credit_card.h
+	$(CC) -c person.cpp
 
-product.o: product.cpp
-	$(CC) -c product.cpp -o product
+product.o: product.cpp product.h
+	$(CC) -c product.cpp
 
-store.o: store.cpp
-	$(CC) -c store.cpp -o store
+store.o: store.cpp store.h person.h product.h transaction.h address.h credit_card.h
+	$(CC) -c store.cpp
 
-transaction.o: transaction.cpp
-	$(CC) -c transaction.cpp -o transaction
+transaction.o: transaction.cpp transaction.h person.h product.h address.h credit_card.h
+	$(CC) -c transaction.cpp
 
 clean:
-	rm -f *.o all
-
-
-// Amy
+	rm -f *.o a.out
