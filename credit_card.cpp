@@ -25,10 +25,8 @@ bool credit_card::make_payment(double payment_amount) {
 }
 
 std::string credit_card::credit_card_info() {
-    std::ostringstream out;
-    out << std::fixed << std::setprecision(2);
-    out << "Card Number: " << cc_number << "\n"
-        << "Credit Limit: $" << limit << "\n"
-        << "Current Balance: $" << current_balance;
-    return out.str();
+    std::ostringstream to_string;
+    to_string << std::fixed << std::setprecision(2);
+    to_string << "Card Number: " << cc_number << "\n" << "Credit Limit: $" << limit << "\n" << "Current Balance: $" << current_balance;
+    return to_string.str();
 }
