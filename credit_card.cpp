@@ -1,13 +1,14 @@
 #include "credit_card.h"
-#include <sstream>
-#include <iomanip>
+#include <sstream> //treat a string object like an iostream
+#include <iomanip> //input/output manipulator for setting floating-point precision
+//no <iostream> because no need to print when building a string
 
 bool credit_card::make_purchase(double purchase_amount) {
     if (purchase_amount <= 0) {
         return false;   // negative purchase amount
     }
     if (current_balance + purchase_amount > limit) {
-        return false;   // exceeding credit limit
+        return false;   // over the credit limit
     }
     current_balance += purchase_amount;
     return true;

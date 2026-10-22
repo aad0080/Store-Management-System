@@ -22,12 +22,12 @@ Person::Person()
     person_credit_card_.limit = 0.00;
 }
 
-void Person::name(string name)
+void Person::name(string name) //setter
 {
     name_ = name;
 }
 
-string Person::name()
+string Person::name() //getter
 {
     return name_;
 }
