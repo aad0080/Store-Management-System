@@ -8,8 +8,12 @@ Store::Store()
 }
 
 void Store::num_customers(int c_num) //setter
-{}
-
+{
+    if (c_num >= 0 && c_num <= 100)
+    {
+        num_customers_ = c_num;
+    }
+}
 int Store::num_customers() //getter
 {}
 
