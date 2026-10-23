@@ -26,11 +26,19 @@ int main()
 Store store1;
     Person people[100];
     int people_count = 0;
+	
 	//print store info after you finish importing info
+	  std::ifstream people_file("people.txt");
+    std::ifstream card_file("credit_card.txt");
+	
 	//from text files and add them to your store
 	cout << "Store info: " << endl << endl;
 	cout << store1.store_info() << endl << endl;
-
+if (!people_file || !card_file)
+    {
+        std::cerr << "Error opening customer data files.\n";
+        return 1;
+    }
 	//make random number of random transactions
 
 	//print store info at the end
