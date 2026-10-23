@@ -1,4 +1,4 @@
-//compile with ./a.out
+# Run with ./a.out
 
 CC = g++ -std=c++14
 
