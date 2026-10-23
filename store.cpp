@@ -1,33 +1,43 @@
 #include "store.h"
 
-Store::Store()
-{
-    num_customers_ = 0;
-    num_products_ = 0;
-    num_transactions_ = 0;
-}
-
-void Store::num_customers(int c_num) //setter
+void Store::num_customers(int c_num)
 {
     if (c_num >= 0 && c_num <= 100)
     {
         num_customers_ = c_num;
     }
 }
-int Store::num_customers() //getter
-{}
+
+int Store::num_customers()
+{
+    return num_customers_;
+}
 
 void Store::num_products(int p_num)
-{}
+{
+    if (p_num >= 0 && p_num <= 100)
+    {
+        num_products_ = p_num;
+    }
+}
 
 int Store::num_products()
-{}
+{
+    return num_products_;
+}
 
 void Store::num_transactions(int t_num)
-{}
+{
+    if (t_num >= 0 && t_num <= 100)
+    {
+        num_transactions_ = t_num;
+    }
+}
 
 int Store::num_transactions()
-{}
+{
+    return num_transactions_;
+}
 
 bool Store::add_customer(Person customer)
 {}
