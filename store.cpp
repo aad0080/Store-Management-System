@@ -204,7 +204,7 @@ string Store::customer_info()
         output += customers_[i].person_info() + "\n\n";
     }
 
-    return output;
+    return output
 }
 
 string Store::store_info()

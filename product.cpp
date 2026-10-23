@@ -3,12 +3,13 @@
 #include <iomanip>
 
 std::string product::product_info()
+
 {
-  std::ostringstream output;
+      std::ostringstream output;
     output << std::fixed << std::setprecision(2);
-    output << "Product: " << name << "\n";
+    output << "Name: " << name << "\n";
     output << "Description: " << description << "\n";
     output << "Price: $" << price << "\n";
-    output << "\n";
     return output.str();
+
 }
