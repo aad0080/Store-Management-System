@@ -1,5 +1,12 @@
 #include "store.h"
 
+Store::Store()
+{
+    num_customers_ = 0;
+    num_products_ = 0;
+    num_transactions_ = 0;
+}
+
 void Store::num_customers(int c_num)
 {
     if (c_num >= 0 && c_num <= 100)
@@ -103,28 +110,125 @@ product Store::get_product(int index)
 }
 
 bool Store::add_transaction(transaction ntransaction)
-{}
+{
+    if (num_transactions_ >= 100)
+    {
+        return false;
+    }
+
+    transactions_[num_transactions_] = ntransaction;
+    num_transactions_++;
+
+    return true;
+}
 
 transaction Store::get_transaction(int index)
-{}
+{
+    if (index < 0 || index >= num_transactions_)
+    {
+        throw std::out_of_range("Invalid transaction index");
+    }
 
-bool Store::make_purchase(Person customer, product item, int index)
-{}
+    return transactions_[index];
+}
+bool Store::make_purchase(Person customer, product item, int amount)
+{
+    int index = find_customer(customer);
+
+    if (index == -1 || amount <= 0 ||
+        item.price <= 0 || num_transactions_ >= 100)
+    {
+        return false;
+    }
+
+    // Use the customer's latest information from the store.
+    Person updated_customer = customers_[index];
+    credit_card card = updated_customer.person_credit_card();
+
+    double total = item.price * amount;
+
+    if (!card.make_purchase(total))
+    {
+        return false;
+    }
+
+    // Save the updated card in the customer object.
+    updated_customer.person_credit_card(card);
+
+    transaction new_transaction;
+    new_transaction.transaction_number = num_transactions_ + 1;
+    new_transaction.customer = updated_customer;
+    new_transaction.purchased_item = item;
+    new_transaction.quantity = amount;
+
+    if (!add_transaction(new_transaction))
+    {
+        return false;
+    }
+
+    update_customer(index, updated_customer);
+
+    return true;
+}
 
 string Store::product_info()
-{}
+{
+    string output;
+
+    for (int i = 0; i < num_products_; i++)
+    {
+        output += products_[i].product_info() + "\n";
+    }}
+
+    retorn output;
+}
 
 string Store::transaction_info()
-{}
+{
+    string output;
+
+    for (int i = 0; i < num_transactions_; i++)
+    {
+        output += transactions_[i].transaction_info() + "\n";
+    }
+
+    return output;
+}
 
 string Store::customer_info()
-{}
+{
+    string output;
+
+    for (int i = 0; i < num_customers_; i++)
+    {
+        output += customers_[i].person_info() + "\n\n";
+    }
+
+    return output
+}
 
 string Store::store_info()
-{}
+{
+    return "Customers:\n" + customer_info()
+         + "\nProducts:\n" + product_info()
+         + "\nAll Transactions:\n" + transaction_info();
+}
 
 string Store::purchase_history(Person customer)
-{}
+{
+    string output;
+
+    for (int i = 0; i < num_transactions_; i++)
+    {
+        if (transactions_[i].customer.person_credit_card().cc_number ==
+            customer.person_credit_card().cc_number)
+        {
+            output += transactions_[i].transaction_info() + "\n";
+        }
+    }
+
+    return output;
+}
 
 int Store::find_customer(Person customer)
 {
