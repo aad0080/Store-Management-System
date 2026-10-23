@@ -1,4 +1,5 @@
 #include "store.h"
+#include <stdexcept>
 
 Store::Store()
 {
@@ -85,7 +86,6 @@ Person Store::get_customer(int index)
     return customers_[index];
 }
 
-bool Store::add_product(product item)
 bool Store::add_product(product item)
 {
     if (num_products_ >= 100)
@@ -178,9 +178,9 @@ string Store::product_info()
     for (int i = 0; i < num_products_; i++)
     {
         output += products_[i].product_info() + "\n";
-    }}
+    }
 
-    retorn output;
+    return output;
 }
 
 string Store::transaction_info()
@@ -204,7 +204,7 @@ string Store::customer_info()
         output += customers_[i].person_info() + "\n\n";
     }
 
-    return output
+    return output;
 }
 
 string Store::store_info()

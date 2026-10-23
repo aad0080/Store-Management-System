@@ -64,5 +64,6 @@ credit_card Person::person_credit_card()
 
 string Person::person_info()
 {
-    return name_ + "\n" + phone_ + "\n" + person_address_.address_info() + "\n" + person_credit_card_.credit_card_info();
+    return name_ + "\n" + phone_ + "\n" + person_address_.address_info()
+        + "\n" + person_credit_card_.credit_card_info() + "\n";
 }
