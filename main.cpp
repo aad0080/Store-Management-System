@@ -20,9 +20,12 @@ int main()
 {
 
 	//import from text files
+	
 
 	//add to store and other variables
-
+Store store1;
+    Person people[100];
+    int people_count = 0;
 	//print store info after you finish importing info
 	//from text files and add them to your store
 	cout << "Store info: " << endl << endl;
