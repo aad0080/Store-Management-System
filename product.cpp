@@ -12,3 +12,4 @@ std::string product::product_info()
     output << "Price: $" << price << "\n";
     return output.str();
 
+}
