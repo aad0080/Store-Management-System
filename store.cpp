@@ -40,19 +40,67 @@ int Store::num_transactions()
 }
 
 bool Store::add_customer(Person customer)
-{}
+{
+    if (num_customers_ >= 100)
+    {
+        return false;
+    }
+
+    customers_[num_customers_] = customer;
+    num_customers_++;
+
+    return true;
+}
 
 bool Store::update_customer(int index, Person customer)
-{}
+{
+    if (index < 0 || index >= num_customers_)
+    {
+        return false;
+    }
 
+    if (customers_[index].person_credit_card().cc_number !=
+        customer.person_credit_card().cc_number)
+    {
+        return false;
+    }
+
+    customers_[index] = customer;
+    return true;
+}
 Person Store::get_customer(int index)
-{}
+{
+    if (index < 0 || index >= num_customers_)
+    {
+        throw std::out_of_range("Invalid customer index");
+    }
+
+    return customers_[index];
+}
 
 bool Store::add_product(product item)
-{}
+bool Store::add_product(product item)
+{
+    if (num_products_ >= 100)
+    {
+        return false;
+    }
+
+    products_[num_products_] = item;
+    num_products_++;
+
+    return true;
+}
 
 product Store::get_product(int index)
-{}
+{
+    if (index < 0 || index >= num_products_)
+    {
+        throw std::out_of_range("Invalid product index");
+    }
+
+    return products_[index];
+}
 
 bool Store::add_transaction(transaction ntransaction)
 {}
@@ -79,4 +127,14 @@ string Store::purchase_history(Person customer)
 {}
 
 int Store::find_customer(Person customer)
-{}
+{
+    for (int i = 0; i < num_customers_; i++)
+    {
+        if (customers_[i].person_credit_card().cc_number ==
+            customer.person_credit_card().cc_number)
+        {
+            return i;
+        }
+    }
+    return -1;
+}
