@@ -26,7 +26,9 @@ int main()
 	Person people[100];
 	product products[100];
 	int people_count = 0;
-			//PEOPLE	
+
+		//PEOPLE	
+
 	string name, number;
 	ifstream personFile("people.txt");
 	while (getline(personFile, name))
@@ -95,18 +97,10 @@ int main()
 	}
 	
 	//print store info after you finish importing info
-	std::ifstream people_file("people.txt");
-    std::ifstream card_file("credit_card.txt");
-	
 	//from text files and add them to your store
 	cout << "Store info: " << endl << endl;
 	cout << store1.store_info() << endl << endl;
-	if (!people_file || !card_file)
-    {
-        std::cerr << "Error opening customer data files.\n";
-        return 1;
-    }
-	
+
 	//make random number of random transactions
 	if (store1.num_customers() == 0 || store1.num_products() == 0)
 	{	
@@ -119,37 +113,40 @@ int main()
 	int attempts = 11 + std::rand() % 89; // 11 through 99
 
 	cout << std::fixed << std::setprecision(2);
-	cout << "Purchase attempts: " << attempts << "\n\n";
 
-	for (int i = 0; i < attempts; i++)
+
+
+	//cout << "Purchase attempts: " << attempts << "\n\n";
+
+	//for (int i = 0; i < attempts; i++)
+	for (int i=0; i < 5; i++) //FOR TESTING PURPOSES ONLY
 	{
 		int customer_index = std::rand() % store1.num_customers();
 		int product_index = std::rand() % store1.num_products();
 		int quantity = 1 + std::rand() % 10;
 
 		Person customer = store1.get_customer(customer_index);
-		product selected = store1.get_product(product_index);
+		product purchased_item = store1.get_product(product_index);
 
-		if (store1.make_purchase(customer, selected, quantity))
+		if (store1.make_purchase(customer, purchased_item, quantity))
 		{
-			cout << "Successful transaction!\n";
-			cout << "Transaction Details:\n";
+			cout << "Successful transaction!" << endl;
+			cout << "Transaction Details: " << endl;
 			cout << store1.get_transaction(store1.num_transactions() - 1).transaction_info();
 		}
 		else
 		{
 			cout << "Unsuccessful transaction!\n";
-			cout << "Purchase declined: credit limit exceeded "
-					"or purchase could not be recorded.\n";
-			cout << "Customer:\n" << customer.person_info() << "\n";
-			cout << "Product:\n" << selected.product_info();
+			cout << "Purchase declined: Credit limit exceeded or purchase could not be recorded.\n";
+			cout << "Name: " << customer.person_info() << "\n";
+			cout << purchased_item.product_info();
 			cout << "Purchase Quantity: " << quantity << "\n";
-			cout << "Total: $" << selected.price * quantity << "\n";
+			cout << "Total: $" << purchased_item.price * quantity << "\n";
 		}
 
-		cout << "\n";
+		cout << "\n\n";
 	}
 	//print store info at the end
 	cout << "Store info: " << endl << endl;
-	cout << store1.store_info() << endl << endl;
+	cout << store1.store_info() << endl;
 }

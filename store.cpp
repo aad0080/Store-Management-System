@@ -204,14 +204,14 @@ string Store::customer_info()
         output += customers_[i].person_info() + "\n\n";
     }
 
-    return output
+    return output;
 }
 
 string Store::store_info()
 {
-    return "Customers:\n" + customer_info()
-         + "\nProducts:\n" + product_info()
-         + "\nAll Transactions:\n" + transaction_info();
+    return "Customers:\n\n" + customer_info()
+         + "\n\nProducts:\n\n" + product_info()
+         + "\n\nAll Transactions:\n\n" + transaction_info();
 }
 
 string Store::purchase_history(Person customer)
