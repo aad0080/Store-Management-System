@@ -116,10 +116,9 @@ int main()
 
 
 
-	//cout << "Purchase attempts: " << attempts << "\n\n";
+	cout << "Purchase attempts: " << attempts << "\n\n";
 
-	//for (int i = 0; i < attempts; i++)
-	for (int i=0; i < 5; i++) //FOR TESTING PURPOSES ONLY
+	for (int i = 0; i < attempts; i++)
 	{
 		int customer_index = std::rand() % store1.num_customers();
 		int product_index = std::rand() % store1.num_products();

@@ -7,7 +7,7 @@ std::string product::product_info()
 {
     std::ostringstream output;
     output << std::fixed << std::setprecision(2);
-    output << "\nProduct: " << name << "\n";
+    output << "Product: " << name << "\n";
     output << "Description: " << description << "\n";
     output << "Price: $" << price << "\n";
     return output.str();
